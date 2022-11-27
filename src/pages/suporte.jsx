@@ -189,7 +189,7 @@ function SuporteTickets() {
     function ConcluirTicket(){
         let time = new Date();
         let agora = time.toLocaleString();
-        setTicket({...ticket, status: "Concluído", dtConclusao: agora});
+        setTicket({...ticket, operador: user.usuario, status: "Concluído", dtConclusao: agora});
         setFim(true)
     };
 
