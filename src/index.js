@@ -7,6 +7,7 @@ import Home from './pages/home'
 import Layout from './layout';
 import { Cliente, NovoCliente, ClienteLogado, NovoTicket, ClienteTickets } from './pages/cliente';
 import { Suporte, SuporteLogado, SuporteTickets } from './pages/suporte';
+import Login from './pages/login';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,21 +17,18 @@ root.render(
         <Route path='/' element={<Layout />}>
           <Route path='/' element={<Navigate to='/home' />} />
           <Route path='home' element={<Home />} />
+          <Route path='login' >
+            <Route path=':perfil' element={<Login />} />
+          </Route>
           <Route path='cliente'>
-            <Route path='' element={<Cliente />} />
+            <Route path='' element={<ClienteLogado />} />
             <Route path='new' element={<NovoCliente />} />
-            <Route path='autenticado' >
-              <Route path='' element={<ClienteLogado />} />
-              <Route path='new' element={<NovoTicket />} />
-              <Route path=':key' element={<ClienteTickets />} />
-            </Route>
+            <Route path='newticket' element={<NovoTicket />} />
+            <Route path=':key' element={<ClienteTickets />} />
           </Route>
           <Route path='suporte'>
-            <Route path='' element={<Suporte />} />
-            <Route path='autenticado' >
-              <Route path='' element={<SuporteLogado />} />
-              <Route path=':key' element={<SuporteTickets />} />
-            </Route>
+            <Route path='' element={<SuporteLogado />} />
+            <Route path=':key' element={<SuporteTickets />} />
           </Route>
         </Route>
       </Routes>

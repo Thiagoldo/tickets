@@ -18,10 +18,10 @@ const Home = () => {
                         <tbody>
                             <tr className="d-flex justify-content-around">
                                 <td>
-                                    <Link className="btn btn-primary" to='/cliente'>Cliente</Link>
+                                    <Link className="btn btn-primary" to='/login/cliente'>Cliente</Link>
                                 </td>
                                 <td>
-                                    <Link className="btn btn-primary" to='/suporte'>Suporte</Link>
+                                    <Link className="btn btn-primary" to='/login/suporte'>Suporte</Link>
                                 </td>
                             </tr>
                         </tbody>

@@ -4,70 +4,6 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { FIREBASE_URL } from '../constants'
 import Context from "../context"
 
-function Suporte() {
-    const { setAutenticado, setUser } = useContext(Context)
-    const [suporte, setSuporte] = useState({})
-    const [dbSuporte, setDbSuporte] = useState([])
-    const [loading, setLoading] = useState(false)
-    const redirecionar = useNavigate()
-    
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        setLoading(true)
-
-        axios
-            .get(`${FIREBASE_URL}/suporte.json`)
-            .then(({ data, status }) => {
-                if (status === 200) {
-                    const retorno = Object
-                        .entries(data)
-                        .map(([key, value]) => {return value})
-                    setDbSuporte(retorno)
-                }
-            })
-            .catch((err) => alert(err))
-            .finally(() => {
-                setLoading(false)
-            })
-
-    }
-
-    useEffect(() => {
-        for (let index = 0; index < dbSuporte.length; index++) {
-            if (dbSuporte[index].usuario === suporte.usuario && dbSuporte[index].senha === suporte.senha) {
-                setUser(dbSuporte[index])
-                setAutenticado(true)
-                alert(`Bem vindo(a), ${dbSuporte[index].nome}`)
-                redirecionar('/suporte/autenticado')
-            }
-        }
-    }, [dbSuporte])
-
-    return (
-        <div className="container d-flex justify-content-center">
-            <section className="card w-50 shadow my-5 text-center d-flex flex-column">
-                <h4>Login - Suporte</h4>
-                <form action="" method="post" className="form" onSubmit={handleSubmit}>
-                    <div className="form-row d-flex flex-row align-items-center my-3 container-fluid">
-                        <label htmlFor="txtUsuario" className="form-label col-2">Usuário</label>
-                        <input type="text" className="form-control" id="txtUsuario" onChange={({ target: { value } }) => setSuporte({ ...suporte, usuario: value })} />
-                    </div>
-                    <div className="form-row d-flex flex-row align-items-center mb-2 container-fluid">
-                        <label htmlFor="pwdSenha" className="form-label col-2">Senha</label>
-                        <input type="password" className="form-control" id="pwdSenha" onChange={({ target: { value } }) => setSuporte({ ...suporte, senha: value })} />
-                    </div>
-                    <div className="container d-flex flex-row justify-content-around">
-                        <input type="submit" className="btn btn-primary mb-3" value="Acessar" />
-                        <Link to="/" className="btn btn-danger mb-3">Voltar</Link>
-                    </div>
-                </form>
-                {loading && <div className="container">Carregando ...</div>}
-
-            </section>
-        </div>
-    )
-}
-
 function SuporteLogado() {
     const { autenticado, setAutenticado, user, setUser } = useContext(Context)
     const [tickets, setTickets] = useState([]);
@@ -95,7 +31,7 @@ function SuporteLogado() {
         setAutenticado(false)
         setUser({})
         alert(`Volte sempre, ${user.nome}`)
-        redirecionar('/suporte')
+        redirecionar('/')
     }
 
     useEffect(() => BuscarTickets, [])
@@ -124,34 +60,34 @@ function SuporteLogado() {
                                 if (el.status === "Em aberto") {
                                     return (
                                         <tr key={ix}>
-                                            <td><Link className='text-danger' to={`/suporte/autenticado/${el.key}`}>{el.id}</Link></td>
-                                            <td><Link className='text-danger' to={`/suporte/autenticado/${el.key}`}>{el.assunto}</Link></td>
-                                            <td><Link className='text-danger' to={`/suporte/autenticado/${el.key}`}>{el.dtAbertura}</Link></td>
-                                            <td><Link className='text-danger' to={`/suporte/autenticado/${el.key}`}>{el.dtConclusao}</Link></td>
-                                            <td><Link className='text-danger' to={`/suporte/autenticado/${el.key}`}>{el.operador}</Link></td>
-                                            <td><Link className='text-danger' to={`/suporte/autenticado/${el.key}`}>{el.status}</Link></td>
+                                            <td><Link className='text-danger' to={`/suporte/${el.key}`}>{el.id}</Link></td>
+                                            <td><Link className='text-danger' to={`/suporte/${el.key}`}>{el.assunto}</Link></td>
+                                            <td><Link className='text-danger' to={`/suporte/${el.key}`}>{el.dtAbertura}</Link></td>
+                                            <td><Link className='text-danger' to={`/suporte/${el.key}`}>{el.dtConclusao}</Link></td>
+                                            <td><Link className='text-danger' to={`/suporte/${el.key}`}>{el.operador}</Link></td>
+                                            <td><Link className='text-danger' to={`/suporte/${el.key}`}>{el.status}</Link></td>
                                         </tr>
                                     )
                                 } else if (el.status === "Concluído") {
                                     return (
                                         <tr key={ix}>
-                                            <td><Link className='text-success' to={`/suporte/autenticado/${el.key}`}>{el.id}</Link></td>
-                                            <td><Link className='text-success' to={`/suporte/autenticado/${el.key}`}>{el.assunto}</Link></td>
-                                            <td><Link className='text-success' to={`/suporte/autenticado/${el.key}`}>{el.dtAbertura}</Link></td>
-                                            <td><Link className='text-success' to={`/suporte/autenticado/${el.key}`}>{el.dtConclusao}</Link></td>
-                                            <td><Link className='text-success' to={`/suporte/autenticado/${el.key}`}>{el.operador}</Link></td>
-                                            <td><Link className='text-success' to={`/suporte/autenticado/${el.key}`}>{el.status}</Link></td>
+                                            <td><Link className='text-success' to={`/suporte/${el.key}`}>{el.id}</Link></td>
+                                            <td><Link className='text-success' to={`/suporte/${el.key}`}>{el.assunto}</Link></td>
+                                            <td><Link className='text-success' to={`/suporte/${el.key}`}>{el.dtAbertura}</Link></td>
+                                            <td><Link className='text-success' to={`/suporte/${el.key}`}>{el.dtConclusao}</Link></td>
+                                            <td><Link className='text-success' to={`/suporte/${el.key}`}>{el.operador}</Link></td>
+                                            <td><Link className='text-success' to={`/suporte/${el.key}`}>{el.status}</Link></td>
                                         </tr>
                                     )
                                 } else {
                                     return (
                                         <tr key={ix}>
-                                            <td><Link className='text-secondary' to={`/suporte/autenticado/${el.key}`}>{el.id}</Link></td>
-                                            <td><Link className='text-secondary' to={`/suporte/autenticado/${el.key}`}>{el.assunto}</Link></td>
-                                            <td><Link className='text-secondary' to={`/suporte/autenticado/${el.key}`}>{el.dtAbertura}</Link></td>
-                                            <td><Link className='text-secondary' to={`/suporte/autenticado/${el.key}`}>{el.dtConclusao}</Link></td>
-                                            <td><Link className='text-secondary' to={`/suporte/autenticado/${el.key}`}>{el.operador}</Link></td>
-                                            <td><Link className='text-secondary' to={`/suporte/autenticado/${el.key}`}>{el.status}</Link></td>
+                                            <td><Link className='text-secondary' to={`/suporte/${el.key}`}>{el.id}</Link></td>
+                                            <td><Link className='text-secondary' to={`/suporte/${el.key}`}>{el.assunto}</Link></td>
+                                            <td><Link className='text-secondary' to={`/suporte/${el.key}`}>{el.dtAbertura}</Link></td>
+                                            <td><Link className='text-secondary' to={`/suporte/${el.key}`}>{el.dtConclusao}</Link></td>
+                                            <td><Link className='text-secondary' to={`/suporte/${el.key}`}>{el.operador}</Link></td>
+                                            <td><Link className='text-secondary' to={`/suporte/${el.key}`}>{el.status}</Link></td>
                                         </tr>
                                     )
                                 }
@@ -199,7 +135,7 @@ function SuporteTickets() {
                 .put(`${FIREBASE_URL}/tickets/${key}.json`, ticket)
                 .then(() => {
                     alert("Alterado com sucesso!")
-                    redirecionar('/suporte/autenticado')
+                    redirecionar('/suporte')
                 })
                 .catch((err) => alert(err))
         }
@@ -266,11 +202,11 @@ function SuporteTickets() {
                         ticket.status === "Em aberto" &&
                         <button onClick={() => setFim(true)} className="btn btn-secondary mt-3">Alterar</button>
                     }
-                    <Link to="/suporte/autenticado" className="btn btn-danger mt-3">Voltar</Link>
+                    <Link to="/suporte" className="btn btn-danger mt-3">Voltar</Link>
                 </section>
             </div>
         </div>
     )
 }
 
-export { Suporte, SuporteLogado, SuporteTickets }
+export { SuporteLogado, SuporteTickets }
