@@ -7,7 +7,6 @@ import Context from "../context"
 function Login() {
     const { setAutenticado, setUser } = useContext(Context)
     const [login, setLogin] = useState({})
-    const [dbLogin, setDbLogin] = useState([])
     const [loading, setLoading] = useState(false)
     const { perfil } = useParams()
     const redirecionar = useNavigate()
@@ -15,34 +14,40 @@ function Login() {
     const handleSubmit = (e) => {
         e.preventDefault()
         setLoading(true)
-
-        axios
-            .get(`${FIREBASE_URL}/${perfil}.json`)
-            .then(({ data, status }) => {
-                if (status === 200) {
-                    const retorno = Object
-                        .entries(data)
-                        .map(([key, value]) => { return value })
-                    setDbLogin(retorno)
-                }
-            })
-            .catch((err) => alert(err))
-            .finally(() => {
-                setLoading(false)
-            })
-
-    }
-
-    useEffect(() => {
-        for (let index = 0; index < dbLogin.length; index++) {
-            if (dbLogin[index].usuario === login.usuario && dbLogin[index].senha === login.senha) {
-                setUser(dbLogin[index])
-                setAutenticado(true)
-                alert(`Bem vindo(a), ${dbLogin[index].nome}`)
-                redirecionar(`/${perfil}`)
-            }
+        let dbLogin = []
+        
+        if(login.usuario && login.senha){
+            let logou = false
+            axios
+                .get(`${FIREBASE_URL}/${perfil}.json`)
+                .then(({ data, status }) => {
+                    if (status === 200) {
+                        dbLogin = Object
+                            .entries(data)
+                            .map(([key, value]) => { return value })
+                        for (let index = 0; index < dbLogin.length; index++) {
+                            if (dbLogin[index].usuario === login.usuario && dbLogin[index].senha === login.senha) {
+                                logou = true
+                                setUser(dbLogin[index])
+                                alert(`Bem vindo(a), ${dbLogin[index].nome}`)
+                            }
+                        }
+                        if (logou) {
+                            setAutenticado(true)
+                            redirecionar(`/${perfil}`)
+                        } else {
+                            alert("Usuário e/ou Senha Incorretos!")
+                        }
+                    }
+                })
+                .catch((err) => alert(err))
+                .finally(() => {
+                    setLoading(false)
+                })
+        } else {
+            alert("Preencha todos os campos.")
         }
-    }, [dbLogin])
+    }
 
     return (
         <div className="container d-flex justify-content-center">
