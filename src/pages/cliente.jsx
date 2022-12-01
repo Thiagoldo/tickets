@@ -83,7 +83,7 @@ function NovoCliente() {
                     </div>
                     <div className="container d-flex flex-row justify-content-around">
                         <input type="submit" className="btn btn-dark mb-3" value="Cadastrar" />
-                        <Link to="/cliente" className="btn btn-danger mb-3">Voltar</Link>
+                        <Link to="/login/cliente" className="btn btn-danger mb-3">Voltar</Link>
                     </div>
                 </form>
                 {loading && <div className="container">Carregando ...</div>}
