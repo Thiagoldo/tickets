@@ -82,7 +82,7 @@ function NovoCliente() {
                         <input type="password" className="form-control" id="pwdSenha" placeholder="Digite sua senha" onChange={({ target: { value } }) => setCliente({ ...cliente, senha: value })} />
                     </div>
                     <div className="container d-flex flex-row justify-content-around">
-                        <input type="submit" className="btn btn-primary mb-3" value="Cadastrar" />
+                        <input type="submit" className="btn btn-dark mb-3" value="Cadastrar" />
                         <Link to="/cliente" className="btn btn-danger mb-3">Voltar</Link>
                     </div>
                 </form>
@@ -127,14 +127,14 @@ function ClienteLogado() {
     return (
         <div className='container'>
             {autenticado &&
-                <h1>Bem vindo, {`${user.nome}`}</h1>
+                <h2>Bem vindo, {`${user.nome}`}</h2>
             }
             <div className="container">
-                <nav className='my-3 navbar bg-light container-fluid'>
+                <nav className='my-3 navbar container-fluid'>
                     <table>
                         <thead>
                             <tr>
-                                <td><Link to={`/cliente/newticket`} className='navbar-brand'>Novo Ticket</Link></td>
+                                <td><Link to={`/cliente/newticket`} className='btn btn-light'>Novo Ticket</Link></td>
                                 <td></td>
                             </tr>
                         </thead>
@@ -142,8 +142,8 @@ function ClienteLogado() {
                 </nav>
 
                 <section>
-                    <table className="table table-striped table-hover">
-                        <thead>
+                    <table className="table table-sm table-striped table-hover">
+                        <thead className="">
                             <tr>
                                 <th>ID</th>
                                 <th>Assunto</th>
@@ -158,25 +158,25 @@ function ClienteLogado() {
                                 if (el.usuario === user.usuario) {
                                     if (el.status === "Em aberto") {
                                         return (
-                                            <tr key={ix}>
-                                                <td><Link className='text-danger' to={`/cliente/${el.key}`}>{el.assunto}</Link></td>
-                                                <td><Link className='text-danger' to={`/cliente/${el.key}`}>{el.id}</Link></td>
-                                                <td><Link className='text-danger' to={`/cliente/${el.key}`}>{el.dtAbertura}</Link></td>
-                                                <td><Link className='text-danger' to={`/cliente/${el.key}`}>{el.dtConclusao}</Link></td>
-                                                <td><Link className='text-danger' to={`/cliente/${el.key}`}>{el.operador}</Link></td>
-                                                <td><Link className='text-danger' to={`/cliente/${el.key}`}>{el.status}</Link></td>
+                                            <tr className="bg-light" key={ix}>
+                                                <td><Link className='text-dark' to={`/cliente/${el.key}`}>{el.id}</Link></td>
+                                                <td><Link className='text-dark' to={`/cliente/${el.key}`}>{el.assunto}</Link></td>
+                                                <td><Link className='text-dark' to={`/cliente/${el.key}`}>{el.dtAbertura}</Link></td>
+                                                <td><Link className='text-dark' to={`/cliente/${el.key}`}>{el.dtConclusao}</Link></td>
+                                                <td><Link className='text-dark' to={`/cliente/${el.key}`}>{el.operador}</Link></td>
+                                                <td><Link className='text-dark' to={`/cliente/${el.key}`}>{el.status}</Link></td>
                                             </tr>
                                         )
 
                                     } else if (el.status === "Concluído") {
                                         return (
-                                            <tr key={ix}>
-                                                <td><Link className='text-success' to={`/cliente/${el.key}`}>{el.id}</Link></td>
-                                                <td><Link className='text-success' to={`/cliente/${el.key}`}>{el.assunto}</Link></td>
-                                                <td><Link className='text-success' to={`/cliente/${el.key}`}>{el.dtAbertura}</Link></td>
-                                                <td><Link className='text-success' to={`/cliente/${el.key}`}>{el.dtConclusao}</Link></td>
-                                                <td><Link className='text-success' to={`/cliente/${el.key}`}>{el.operador}</Link></td>
-                                                <td><Link className='text-success' to={`/cliente/${el.key}`}>{el.status}</Link></td>
+                                            <tr className="bg-secondary" key={ix}>
+                                                <td><Link className='text-dark' to={`/cliente/${el.key}`}>{el.id}</Link></td>
+                                                <td><Link className='text-dark' to={`/cliente/${el.key}`}>{el.assunto}</Link></td>
+                                                <td><Link className='text-dark' to={`/cliente/${el.key}`}>{el.dtAbertura}</Link></td>
+                                                <td><Link className='text-dark' to={`/cliente/${el.key}`}>{el.dtConclusao}</Link></td>
+                                                <td><Link className='text-dark' to={`/cliente/${el.key}`}>{el.operador}</Link></td>
+                                                <td><Link className='text-dark' to={`/cliente/${el.key}`}>{el.status}</Link></td>
                                             </tr>
                                         )
 
@@ -188,7 +188,7 @@ function ClienteLogado() {
                     </table>
                 </section>
                 <section className='container d-flex justify-content-around'>
-                    <button className='btn btn-secondary mt-3' onClick={BuscarTickets} >Atualizar</button>
+                    <button className='btn btn-dark mt-3' onClick={BuscarTickets} >Atualizar</button>
                     <button onClick={Loggout} className="btn btn-danger mt-3">Sair</button>
                 </section>
             </div>
@@ -259,11 +259,11 @@ function NovoTicket() {
                         <input type="text" className="form-control" id="txtAssunto" onChange={({ target: { value } }) => setTicket({ ...ticket, assunto: value })} />
                     </div>
                     <div className="form-row d-flex flex-row align-items-center my-3 container-fluid">
-                        <label htmlFor="txtDescricao" className="form-label col-2">Descricao</label>
+                        <label htmlFor="txtDescricao" className="form-label col-2">Descriçao</label>
                         <textarea rows={5} className="form-control" id="txtDescricao" onChange={({ target: { value } }) => setTicket({ ...ticket, descricao: value })} />
                     </div>
                     <div className="container d-flex flex-row justify-content-around">
-                        <input type="submit" className="btn btn-primary mb-3" value="Cadastrar" />
+                        <input type="submit" className="btn btn-dark mb-3" value="Cadastrar" />
                         <Link to={`/cliente`} className="btn btn-danger mb-3">Voltar</Link>
                     </div>
                 </form>
@@ -296,7 +296,7 @@ function ClienteTickets() {
                     <table>
                         <thead>
                             <tr>
-                                <td className='navbar-brand'>Ticket - {`${ticket.assunto}`}</td>
+                                <td className='navbar-brand'>Assunto: {`${ticket.assunto}`}</td>
                             </tr>
                         </thead>
                     </table>

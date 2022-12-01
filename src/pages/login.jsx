@@ -3,12 +3,14 @@ import { useContext, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { FIREBASE_URL } from '../constants'
 import Context from "../context"
+import cliente from "../img/cliente.png"
+import suporte from "../img/suporte-tecnico.png"
 
 function Login() {
-    const { setAutenticado, setUser } = useContext(Context)
+    const { setAutenticado, user, setUser } = useContext(Context)
     const [login, setLogin] = useState({})
     const [loading, setLoading] = useState(false)
-    const { perfil } = useParams()
+    const { perfil  } = useParams()
     const redirecionar = useNavigate()
 
     const handleSubmit = (e) => {
@@ -52,7 +54,7 @@ function Login() {
     return (
         <div className="container d-flex justify-content-center">
             <section className="card w-50 shadow my-5 text-center d-flex flex-column">
-                <h4>Login - {`${perfil}`}</h4>
+                <h4>{perfil === 'cliente' ? <img src={cliente} style={{width: "40px", marginTop: "2px"}}/> : <img src={suporte} style={{width: "40px", marginTop: "2px"}}/>} Login - {`${perfil}`}</h4>
                 <form action="" method="post" className="form" onSubmit={handleSubmit}>
                     <div className="form-row d-flex flex-row align-items-center my-3 container-fluid">
                         <label htmlFor="txtUsuario" className="form-label col-2">Usuário</label>
@@ -63,7 +65,7 @@ function Login() {
                         <input type="password" className="form-control" id="pwdSenha" onChange={({ target: { value } }) => setLogin({ ...login, senha: value })} />
                     </div>
                     <div className="container d-flex flex-row justify-content-around">
-                        <input type="submit" className="btn btn-primary mb-3" value="Acessar" />
+                        <input type="submit" className="btn btn-dark mb-3" value="Acessar" />
                         {perfil === 'cliente' && <Link to="/cliente/new" className="btn btn-secondary mb-3">Novo Usuário</Link>}
                         <Link to="/" className="btn btn-danger mb-3">Voltar</Link>
                     </div>

@@ -39,12 +39,12 @@ function SuporteLogado() {
     return (
         <div>
             {autenticado &&
-                <h1>Bem vindo, {`${user.nome}`}</h1>
+                <h2>Bem vindo, {`${user.nome}`}</h2>
             }
             <div className="container">
 
                 <section>
-                    <table className="table table-striped table-hover">
+                    <table className="table table-sm table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -59,35 +59,35 @@ function SuporteLogado() {
                             {tickets.map((el, ix) => {
                                 if (el.status === "Em aberto") {
                                     return (
-                                        <tr key={ix}>
-                                            <td><Link className='text-danger' to={`/suporte/${el.key}`}>{el.id}</Link></td>
-                                            <td><Link className='text-danger' to={`/suporte/${el.key}`}>{el.assunto}</Link></td>
-                                            <td><Link className='text-danger' to={`/suporte/${el.key}`}>{el.dtAbertura}</Link></td>
-                                            <td><Link className='text-danger' to={`/suporte/${el.key}`}>{el.dtConclusao}</Link></td>
-                                            <td><Link className='text-danger' to={`/suporte/${el.key}`}>{el.operador}</Link></td>
-                                            <td><Link className='text-danger' to={`/suporte/${el.key}`}>{el.status}</Link></td>
+                                        <tr className="bg-light" key={ix}>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.id}</Link></td>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.assunto}</Link></td>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.dtAbertura}</Link></td>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.dtConclusao}</Link></td>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.operador}</Link></td>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.status}</Link></td>
                                         </tr>
                                     )
                                 } else if (el.status === "Concluído") {
                                     return (
-                                        <tr key={ix}>
-                                            <td><Link className='text-success' to={`/suporte/${el.key}`}>{el.id}</Link></td>
-                                            <td><Link className='text-success' to={`/suporte/${el.key}`}>{el.assunto}</Link></td>
-                                            <td><Link className='text-success' to={`/suporte/${el.key}`}>{el.dtAbertura}</Link></td>
-                                            <td><Link className='text-success' to={`/suporte/${el.key}`}>{el.dtConclusao}</Link></td>
-                                            <td><Link className='text-success' to={`/suporte/${el.key}`}>{el.operador}</Link></td>
-                                            <td><Link className='text-success' to={`/suporte/${el.key}`}>{el.status}</Link></td>
+                                        <tr className="bg-secondary" key={ix}>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.id}</Link></td>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.assunto}</Link></td>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.dtAbertura}</Link></td>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.dtConclusao}</Link></td>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.operador}</Link></td>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.status}</Link></td>
                                         </tr>
                                     )
                                 } else {
                                     return (
-                                        <tr key={ix}>
-                                            <td><Link className='text-secondary' to={`/suporte/${el.key}`}>{el.id}</Link></td>
-                                            <td><Link className='text-secondary' to={`/suporte/${el.key}`}>{el.assunto}</Link></td>
-                                            <td><Link className='text-secondary' to={`/suporte/${el.key}`}>{el.dtAbertura}</Link></td>
-                                            <td><Link className='text-secondary' to={`/suporte/${el.key}`}>{el.dtConclusao}</Link></td>
-                                            <td><Link className='text-secondary' to={`/suporte/${el.key}`}>{el.operador}</Link></td>
-                                            <td><Link className='text-secondary' to={`/suporte/${el.key}`}>{el.status}</Link></td>
+                                        <tr className="bg-danger" key={ix}>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.id}</Link></td>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.assunto}</Link></td>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.dtAbertura}</Link></td>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.dtConclusao}</Link></td>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.operador}</Link></td>
+                                            <td><Link className='text-dark' to={`/suporte/${el.key}`}>{el.status}</Link></td>
                                         </tr>
                                     )
                                 }
@@ -97,7 +97,7 @@ function SuporteLogado() {
                     </table>
                 </section>
                 <section className='container d-flex justify-content-around'>
-                    <button className='btn btn-secondary mt-3' onClick={BuscarTickets} >Atualizar</button>
+                    <button className='btn btn-dark mt-3' onClick={BuscarTickets} >Atualizar</button>
                     <button onClick={Loggout} className="btn btn-danger mt-3">Sair</button>
                 </section>
             </div>
@@ -151,7 +151,7 @@ function SuporteTickets() {
                     <table>
                         <thead>
                             <tr>
-                                <td className='navbar-brand'>Ticket - {`${ticket.assunto}`}</td>
+                                <td className='navbar-brand'>Assunto: {`${ticket.assunto}`}</td>
                             </tr>
                         </thead>
                     </table>

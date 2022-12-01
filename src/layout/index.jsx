@@ -24,7 +24,7 @@ const Layout = () => {
                         <nav className="navbar bg-light navbar-expand-lg">
                             <div className="container-fluid">
                                 <Link className="navbar-brand" to='/'>
-                                    <img src={logo} width="42px" alt="Logo Suporte" />
+                                    <img src={logo} style={{width:"110px", margin: "-35px 0"}} alt="Logo Suporte" />
                                 </Link>
                             </div>
                         </nav>
@@ -37,10 +37,10 @@ const Layout = () => {
                     </div>
                 </main>
                 <footer className="mt-5">
-                    <div className="container text-center">
-                        <p>Desenvolvido na disciplina de Desenvolvimento Web</p>
-                        <p>Thiago e Ícaro</p>
-                        <p>&copy; 2022 - Estacio</p>
+                    <div className="container text-center" >
+                        <p style={{margin: 0}}>Desenvolvido na Disciplina de Desenvolvimento Web</p>
+                        <p style={{margin: 0}}>Thiago Lima de Oliveira</p>
+                        <p style={{margin: 0}}>&copy; 2022 - Estacio</p>
                     </div>
                 </footer>
             </div>

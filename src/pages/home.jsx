@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+import suporte from '../img/suporte-tecnico.png'
+import cliente from '../img/cliente.png'
 
 const Home = () => {
 
@@ -18,10 +20,17 @@ const Home = () => {
                         <tbody>
                             <tr className="d-flex justify-content-around">
                                 <td>
-                                    <Link className="btn btn-primary" to='/login/cliente'>Cliente</Link>
+                                    <Link className="btn btn-light" to='/login/cliente'><img src={cliente} style={{width: "40px"}}/> Cliente</Link>
                                 </td>
                                 <td>
-                                    <Link className="btn btn-primary" to='/login/suporte'>Suporte</Link>
+                                    <Link className="btn btn-light" to='/login/suporte'><img src={suporte} style={{width: "40px"}}/> Suporte</Link>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
