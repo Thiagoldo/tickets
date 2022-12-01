@@ -61,6 +61,7 @@ function NovoCliente() {
             })
         } else {
             alert("Preencha todos os campos do formulário.")
+            setLoading(false)
         }
     }
 

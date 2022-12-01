@@ -48,6 +48,7 @@ function Login() {
                 })
         } else {
             alert("Preencha todos os campos.")
+            setLoading(false)
         }
     }
 
