@@ -53,7 +53,7 @@ function NovoCliente() {
             .post(`${FIREBASE_URL}/cliente.json`, cliente)
             .then(() => {
                 alert(`Cadastro bem sucedido.`)
-                redirecionar('/cliente')
+                redirecionar('/login/cliente')
             })
             .catch((err) => alert(err))
             .finally(() => {
