@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
+import { app } from './firebase';
+
 import Home from './pages/home'
 import Layout from './layout';
 import { Cliente, NovoCliente, ClienteLogado, NovoTicket, ClienteTickets } from './pages/cliente';
